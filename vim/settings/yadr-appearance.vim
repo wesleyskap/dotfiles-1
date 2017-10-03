@@ -15,7 +15,7 @@ if has("gui_running")
   if has("gui_gtk2")
     set guifont=Inconsolata\ XL\ 12,Inconsolata\ 15,Monaco\ 12
   else
-    set guifont=Inconsolata\ XL:h16,Inconsolata:h20,Monaco:h16
+    set guifont=Inconsolata\ XL:h12,Inconsolata:h20,Monaco:h12
   end
 else
   let g:CSApprox_loaded = 1
@@ -26,6 +26,3 @@ else
     let g:solarized_termtrans=1
   end
 endif
-
-colorscheme solarized
-set background=dark
