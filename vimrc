@@ -12,17 +12,12 @@ endif
 
 set number                      "Line numbers are good
 set backspace=indent,eol,start  "Allow backspace in insert mode
-set history=2000                "Store lots of :cmdline history
+set history=1000                "Store lots of :cmdline history
 set showcmd                     "Show incomplete cmds down the bottom
 set showmode                    "Show current mode down the bottom
 set gcr=a:blinkon0              "Disable cursor blink
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
-
-let g:session_autosave = 'yes'
-let g:session_autoload = 'yes'
-set undofile
-set undodir=~/.vim/undo/
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -34,7 +29,7 @@ syntax on
 
 " Change leader to a comma because the backslash is too far away
 " That means all \x commands turn into ,x
-" The mapleader has to be set before vundle starts loading all 
+" The mapleader has to be set before vundle starts loading all
 " the plugins.
 let mapleader=","
 
@@ -44,6 +39,7 @@ let mapleader=","
 if filereadable(expand("~/.vim/vundles.vim"))
   source ~/.vim/vundles.vim
 endif
+au BufNewFile,BufRead *.vundle set filetype=vim
 
 " ================ Turn Off Swap Files ==============
 
@@ -121,7 +117,10 @@ set smartcase       " ...unless we type a capital
 " ================ Custom Settings ========================
 so ~/.yadr/vim/settings.vim
 
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
+
+" ================
+let g:minimap_show='<leader>ms'
+let g:minimap_update='<leader>mu'
+let g:minimap_close='<leader>gc'
+let g:minimap_toggle='<leader>gt'
+let g:minimap_highlight='Visual'
