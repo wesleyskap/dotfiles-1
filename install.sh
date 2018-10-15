@@ -2,6 +2,7 @@
 
 if [ ! -d "$HOME/.yadr" ]; then
     echo "Installing YADR for the first time"
+    # wesleyskap 
     git clone --depth=1 https://github.com/wesleyskap/dotfiles-1.git "$HOME/.yadr"
     cd "$HOME/.yadr"
     [ "$1" = "ask" ] && export ASK="true"

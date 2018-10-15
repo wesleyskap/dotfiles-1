@@ -312,6 +312,7 @@ rvm system do brew install vim --with-lua
 
 
 ### [Pry](http://pry.github.com/)
+Let binding pry
 
 Pry offers a much better out of the box IRB experience with colors, tab completion, and lots of other tricks. You can also use it
 as an actual debugger by installing [pry-nav](https://github.com/nixme/pry-nav).
