@@ -39,7 +39,7 @@ prompt_segment() {
 # End the prompt, closing any open segments
 prompt_end() {
   if [[ -n $CURRENT_BG ]]; then
-    echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+    echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR %{%F{white}%}$"
   else
     echo -n "%{%k%}"
   fi
@@ -123,7 +123,7 @@ prompt_status() {
 ### current time
 ### function added by digitalformula
 prompt_time() {
-  prompt_segment default white "`date +%H:%M:%S`"
+  prompt_segment black white "`date +%H:%M:%S`"
 }
 
 ### current hostname
