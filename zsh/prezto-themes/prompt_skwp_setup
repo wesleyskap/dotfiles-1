@@ -75,6 +75,28 @@ prompt_git() {
   fi
 }
 
+# Checks if working tree is dirty
+function parse_git_dirty() {
+  local STATUS=''
+  local -a FLAGS
+  FLAGS=('--porcelain')
+  if [[ "$(command git config --get oh-my-zsh.hide-dirty)" != "1" ]]; then
+    if [[ $POST_1_7_2_GIT -gt 0 ]]; then
+      FLAGS+='--ignore-submodules=dirty'
+    fi
+    if [[ "$DISABLE_UNTRACKED_FILES_DIRTY" == "true" ]]; then
+      FLAGS+='--untracked-files=no'
+    fi
+    STATUS=$(command git status ${FLAGS} 2> /dev/null | tail -n1)
+  fi
+  if [[ -n $STATUS ]]; then
+    echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+  else
+    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+  fi
+}
+
+
 # Dir: current working directory
 prompt_dir_old() {
   prompt_segment blue black '%~'
@@ -114,8 +136,6 @@ prompt_hostname() {
 ## Main prompt (Old version, includes currect directory)
 build_prompt_old() {
   RETVAL=$?
-  prompt_status
-  prompt_context
   prompt_dir
   prompt_git
   prompt_end
@@ -123,9 +143,7 @@ build_prompt_old() {
 
 build_prompt() {
   RETVAL=$?
-  prompt_status
   prompt_time
-  prompt_hostname
   prompt_dir
   prompt_git
   prompt_end
